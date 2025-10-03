@@ -60,87 +60,90 @@ spec:
           type: http
           scheme: bearer
           bearerFormat: PAT
+
+---
+
 # OpenAI API
-  apiVersion: backstage.io/v1alpha1
-  kind: API
-  metadata:
-    name: openai-api
-    description: OpenAI REST API for GPT and other AI models
-    tags:
-      - openai
-      - rest
-      - ai
-  spec:
-    type: openapi
-    lifecycle: production
-    owner: data-platform-team
-    definition: |
-      openapi: 3.0.1
-      info:
-        title: OpenAI API
-        version: 1.0.0
-        description: REST API for OpenAI models (ChatGPT, DALL·E, embeddings, etc.)
-      servers:
-        - url: https://api.openai.com/v1
-      paths:
-        /models:
-          get:
-            summary: List available models
-            security:
-              - BearerAuth: []
-            responses:
-              '200':
-                description: List of models
-        /completions:
-          post:
-            summary: Create a text completion
-            security:
-              - BearerAuth: []
-            requestBody:
-              required: true
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      model:
-                        type: string
-                      prompt:
-                        type: string
-                      max_tokens:
-                        type: integer
-            responses:
-              '200':
-                description: Completion result
-        /chat/completions:
-          post:
-            summary: Create a chat completion
-            security:
-              - BearerAuth: []
-            requestBody:
-              required: true
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      model:
-                        type: string
-                      messages:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            role:
-                              type: string
-                            content:
-                              type: string
-            responses:
-              '200':
-                description: Chat completion result
-      components:
-        securitySchemes:
-          BearerAuth:
-            type: http
-            scheme: bearer
-            bearerFormat: API_KEY
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: openai-api
+  description: OpenAI REST API for GPT and other AI models
+  tags:
+    - openai
+    - rest
+    - ai
+spec:
+  type: openapi
+  lifecycle: production
+  owner: data-platform-team
+  definition: |
+    openapi: 3.0.1
+    info:
+      title: OpenAI API
+      version: 1.0.0
+      description: REST API for OpenAI models (ChatGPT, DALL·E, embeddings, etc.)
+    servers:
+      - url: https://api.openai.com/v1
+    paths:
+      /models:
+        get:
+          summary: List available models
+          security:
+            - BearerAuth: []
+          responses:
+            '200':
+              description: List of models
+      /completions:
+        post:
+          summary: Create a text completion
+          security:
+            - BearerAuth: []
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    model:
+                      type: string
+                    prompt:
+                      type: string
+                    max_tokens:
+                      type: integer
+          responses:
+            '200':
+              description: Completion result
+      /chat/completions:
+        post:
+          summary: Create a chat completion
+          security:
+            - BearerAuth: []
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    model:
+                      type: string
+                    messages:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          role:
+                            type: string
+                          content:
+                            type: string
+          responses:
+            '200':
+              description: Chat completion result
+    components:
+      securitySchemes:
+        BearerAuth:
+          type: http
+          scheme: bearer
+          bearerFormat: API_KEY
