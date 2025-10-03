@@ -1,9 +1,9 @@
+# Petstore API
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: petstore
-  description: |
-    Example Petstore API (OpenAPI v3).
+  description: Example Petstore API (OpenAPI v3)
   tags:
     - openapi
     - example
@@ -13,3 +13,21 @@ spec:
   owner: team-a
   definition:
     $text: https://petstore.swagger.io/v2/swagger.json
+
+---
+
+# Databricks Workspace API
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: databricks-workspace-api
+  description: Databricks Workspace REST API
+  tags:
+    - databricks
+    - rest
+spec:
+  type: openapi
+  lifecycle: production
+  owner: data-platform-team
+  definition:
+    $text: ./databricks-openapi.yaml
