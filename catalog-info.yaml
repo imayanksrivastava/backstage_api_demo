@@ -29,5 +29,34 @@ spec:
   type: openapi
   lifecycle: production
   owner: data-platform-team
-  definition:
-    $text: ./databricks-openapi.yaml
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Databricks Workspace API
+      version: 1.0.0
+      description: Databricks REST API example
+    servers:
+      - url: https://<your-databricks-instance>.cloud.databricks.com/api/2.0
+    paths:
+      /clusters/list:
+        get:
+          summary: List clusters
+          security:
+            - BearerAuth: []
+          responses:
+            '200':
+              description: List of clusters
+      /jobs/list:
+        get:
+          summary: List jobs
+          security:
+            - BearerAuth: []
+          responses:
+            '200':
+              description: List of jobs
+    components:
+      securitySchemes:
+        BearerAuth:
+          type: http
+          scheme: bearer
+          bearerFormat: PAT
