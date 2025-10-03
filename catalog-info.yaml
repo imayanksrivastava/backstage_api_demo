@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: petstore
+  description: |
+    Example Petstore API (OpenAPI v3).
+  tags:
+    - openapi
+    - example
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-a
+  definition:
+    $text: https://petstore.swagger.io/v2/swagger.json
