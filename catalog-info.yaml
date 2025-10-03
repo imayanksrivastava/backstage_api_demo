@@ -36,7 +36,7 @@ spec:
       version: 1.0.0
       description: Databricks REST API example
     servers:
-      - url: https://<your-databricks-instance>.cloud.databricks.com/api/2.0
+      - url: https://dbc-77023c7b-6c91.cloud.cloud.databricks.com/api/2.0
     paths:
       /clusters/list:
         get:
